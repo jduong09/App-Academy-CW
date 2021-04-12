@@ -4,7 +4,7 @@ class Board
   attr_reader :grid
 
   def self.empty_grid
-    grid = Array.new(9) do
+    Array.new(9) do
       Array.new(9) { Tile.new(0) }
     end
   end
@@ -24,7 +24,7 @@ class Board
   end
 
   def [](pos)
-    x,y = pos
+    x, y = pos
     grid[x][y]
   end
 
