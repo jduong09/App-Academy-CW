@@ -26,13 +26,13 @@ class Board
 
   def [](pos)
     pos = x,y
-    grid[x + 1][y + 1]
+    grid[x][y]
   end
 
   def []=(pos, value)
     x, y = pos
     tile = grid[x][y]
-    tile.value = new_value
+    tile.value = value
   end
 
   def columns
@@ -40,12 +40,11 @@ class Board
   end
 
   def render
-    puts "#{(0..9).to_a.join(" ")}"
+    puts "  #{(0..8).to_a.join(" ")}"
     grid.each_with_index do |row, i|
       puts "#{i} #{row.join(" ")}"
     end
   end
-
 
   def size
     grid.size
@@ -63,7 +62,7 @@ class Board
 
   def solved_set?(tiles)
     nums = tiles.map(&:value)
-    nums.sort == (1..9)
+    nums.sort == (1..9).to_a
   end
 
   def square(idx)
@@ -73,13 +72,14 @@ class Board
 
     (x..x + 3).each do |j|
       (y..y + 3).each do |i|
-        tiles << self[i, j]
+        tiles << grid[j, i]
       end
     end
 
     tiles
   end
 
+  #[0,1,2,3,4,5,6,7,8]
   def squares
     (0..8).to_a.each { |i| square(i) }
   end
