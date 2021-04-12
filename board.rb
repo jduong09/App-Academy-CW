@@ -3,7 +3,7 @@ require_relative "tile"
 class Board
   attr_reader :grid
 
-  def self.empty_grid
+  def empty_grid
     Array.new(9) do
       Array.new(9) { Tile.new(0) }
     end
@@ -78,7 +78,6 @@ class Board
     tiles
   end
 
-  #[0,1,2,3,4,5,6,7,8]
   def squares
     (0..8).to_a.each { |i| square(i) }
   end
