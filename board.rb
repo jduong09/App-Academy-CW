@@ -3,7 +3,7 @@ require_relative "tile"
 class Board
   attr_reader :grid
 
-  def self.empty_grid
+  def empty_grid
     Array.new(9) do
       Array.new(9) { Tile.new(0) }
     end
@@ -47,10 +47,12 @@ class Board
 
 
   def size
-    grid.size
+    grid.length
   end
 
-  alias_method :rows, :size
+  def rows
+    grid
+  end
 
   def solved?
     rows.all? { |row| solved_set?(row) } &&

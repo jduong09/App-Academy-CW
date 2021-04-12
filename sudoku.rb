@@ -1,8 +1,6 @@
 require_relative "board"
 require 'colorize'
 
-puts "Only contractors write code this bad.".yellow
-
 class SudokuGame
   def self.from_file(filename)
     board = Board.from_file(filename)
@@ -10,7 +8,7 @@ class SudokuGame
   end
 
   def initialize(board)
-    @board = [[]]
+    @board = board
   end
 
   def method_missing(method_name, *args)
@@ -41,6 +39,10 @@ class SudokuGame
     pos
   end
 
+  def parse_pos(pos)
+    pos.split(",").map { |char| Integer(char) }
+  end
+
   def get_val
     val = nil
     until val && valid_val?(val)
@@ -49,6 +51,10 @@ class SudokuGame
       val = parse_val(gets.chomp)
     end
     val
+  end
+
+  def parse_val(val)
+    Integer(val)
   end
 
   def play_turn
@@ -84,4 +90,5 @@ class SudokuGame
 end
 
 
-game = SudokuGame.from_file("puzzles/sudoku1.txt")
+game = SudokuGame.from_file("puzzles/sudoku1-almost.txt")
+game.run
