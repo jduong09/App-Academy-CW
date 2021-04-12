@@ -4,10 +4,9 @@ class Board
   attr_reader :grid
 
   def self.empty_grid
-    @grid = Array.new(9) do
+    grid = Array.new(9) do
       Array.new(9) { Tile.new(0) }
     end
-    grid
   end
 
   def self.from_file(filename)
@@ -25,7 +24,7 @@ class Board
   end
 
   def [](pos)
-    pos = x,y
+    x,y = pos
     grid[x][y]
   end
 
@@ -72,7 +71,7 @@ class Board
 
     (x..x + 3).each do |j|
       (y..y + 3).each do |i|
-        tiles << grid[j, i]
+        tiles << self[[j, i]]
       end
     end
 
