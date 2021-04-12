@@ -79,7 +79,7 @@ class Board
   end
 
   def squares
-    (0..8).to_a.each { |i| square(i) }
+    (0..8).to_a.map { |i| square(i) }
   end
 
 end
